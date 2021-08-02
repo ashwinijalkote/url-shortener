@@ -33,12 +33,18 @@ public class URLService {
         return url.get().getFullUrl();
     }
 
-    public String saveURL(String fullURL) throws MalformedURLException, URISyntaxException {
+    public String saveURL(String fullURL, String requesUrl) throws MalformedURLException, URISyntaxException {
         new java.net.URL(fullURL).toURI();
         URL url = new URL();
         url.setFullUrl(fullURL);
         Long id  = urlRepository.save(url).getId();
         logger.info(fullURL + " converted to id: " + id);
-        return BaseConversion.idToShortString(id);
+        return getBaseURL(requesUrl) + BaseConversion.idToShortString(id);
+    }
+
+    private String getBaseURL(String url) throws MalformedURLException {
+        java.net.URL reqURL = new java.net.URL(url);
+        return reqURL.getProtocol() + ":" +"//" + reqURL.getHost() +
+                (reqURL.getPort() != -1 ?  (":"+ reqURL.getPort()) : "") + "/";
     }
 }

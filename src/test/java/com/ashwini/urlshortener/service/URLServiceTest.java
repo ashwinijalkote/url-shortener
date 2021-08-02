@@ -49,11 +49,12 @@ public class URLServiceTest {
         url.setFullUrl("http://testurl");
         url.setId(10L);
         when(urlRepository.save(any())).thenReturn(url);
-        assertEquals(BaseConversion.idToShortString(10L), urlService.saveURL("http://testurl"));
+        String baseURl = "http://localhost:8080/";
+        assertEquals(baseURl + BaseConversion.idToShortString(10L), urlService.saveURL("http://testurl", baseURl));
     }
 
     @Test(expected = MalformedURLException.class)
     public void testSaveURLForInvalidURL() throws MalformedURLException, URISyntaxException {
-        urlService.saveURL("htt//testurl");
+        urlService.saveURL("htt//testurl", "http://localhost:8080/");
     }
 }
