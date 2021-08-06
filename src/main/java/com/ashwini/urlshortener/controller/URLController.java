@@ -40,7 +40,7 @@ public class URLController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 
-    @GetMapping("/url/{shortString}")
+    @GetMapping("/{shortString}")
     public ResponseEntity<String> redirectToFullURL(@PathVariable String shortString, HttpServletResponse response) throws ShortURLNotFoundException {
         String fullURL = urlService.getFullURL(shortString);
         try {

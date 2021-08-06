@@ -39,7 +39,7 @@ public class URLService {
         url.setFullUrl(fullURL);
         Long id  = urlRepository.save(url).getId();
         logger.info(fullURL + " converted to id: " + id);
-        return getBaseURL(requesUrl) + BaseConversion.idToShortString(id);
+        return getBaseURL(requesUrl)  + "api/" + BaseConversion.idToShortString(id);
     }
 
     private String getBaseURL(String url) throws MalformedURLException {
