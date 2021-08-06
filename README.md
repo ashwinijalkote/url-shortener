@@ -14,3 +14,6 @@ Steps to run :
 
 To run tests:
 1. mvn clean test 
+
+Swagger UI:
+Swagger-ui can be accessed from http://localhost:8080/swagger-ui.html
